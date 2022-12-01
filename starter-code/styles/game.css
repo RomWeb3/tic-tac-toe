@@ -1,0 +1,139 @@
+.game.active {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 32.8rem;
+    margin-bottom: 6.4rem;
+}
+
+.turn {
+    width: 9.6rem;
+    height: 4rem;
+    background: #1F3641;
+    box-shadow: inset 0px -4px 0px #10212A;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: #A8BFC9;
+    gap: 0.9rem;
+    padding-bottom: 0.4rem;
+    margin-left: -3rem;
+}
+
+.restart {
+    height: 4rem;
+    width: 4rem;
+    background: #a8bfc9;
+    box-shadow: inset 0px -4px 0px #6B8997;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restart img {
+    width: 1.54rem;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.row {
+    display: flex;
+    gap: 2rem;
+}
+
+.row .cell {
+    aspect-ratio: 1/1;
+    width: 9.6rem;
+    background: #1F3641;
+    box-shadow: inset 0px -8px 0px #10212A;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row .cell img {
+    height: 4rem;
+    width: 4rem;
+    margin-top: -0.4rem;
+}
+
+.scoreboard {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.your-score, .ties-score, .cpu-score {
+    width: 9.6rem;
+    height: 6.4rem;
+    background: #31C3BD;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.2rem;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+    color: #1A2A33;
+}
+
+.ties-score {
+    background: #A8BFC9;
+}
+
+.cpu-score {
+    background: #F2B137;
+}
+
+.score {
+    color: #1A2A33;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 1.25px;
+}
+
+
+
+
+@media screen and (max-width: 370px) {
+    .row .cell {
+        width: calc(100vw * 0.256);
+    }
+
+    .your-score, .ties-score, .cpu-score {
+        width: calc(100vw * 0.256);
+        height: calc(100vw * 0.17067);
+        padding-top: calc(100vw * 0.02);
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .turn {
+        margin-left: -0.5rem;
+    }
+}

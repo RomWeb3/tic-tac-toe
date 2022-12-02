@@ -32,6 +32,13 @@
     margin-left: -3rem;
 }
 
+.turn .x-turn, .turn .o-turn {
+    display: none;
+}
+.turn .x-turn.active, .turn .o-turn.active {
+    display: block;
+}
+
 .restart {
     height: 4rem;
     width: 4rem;
@@ -116,8 +123,6 @@
     line-height: 25px;
     letter-spacing: 1.25px;
 }
-
-
 
 
 @media screen and (max-width: 370px) {

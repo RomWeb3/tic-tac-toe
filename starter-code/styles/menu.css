@@ -60,7 +60,7 @@ main {
     display: none;
 }
 
-.modal, .modal-restart-game {
+.modal, .modal-restart-game, .modal-draw {
     display: none;
 }
 
@@ -113,15 +113,15 @@ main {
     background: #A8BFC9;
 }
 
-.x {
+.select-x {
     color: #A8BFC9;
 }
 
-.o {
+.select-o {
     color: #A8BFC9;
 }
 
-.x.active, .o.active {
+.select-x.active, .select-o.active {
     color: #1A2A33
 }
 

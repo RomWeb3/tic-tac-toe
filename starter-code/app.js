@@ -185,7 +185,7 @@ function result(winner) {
         }, 700);
     } else if (roundWon && winner === 'cpu') {
         setTimeout(() => {
-            winOrLoseTxt.innerText = 'you lose!';
+            winOrLoseTxt.innerText = 'oh no, you lost...';
             modal.classList.add('active', oOrX);
         }, 700);
         

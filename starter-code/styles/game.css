@@ -156,3 +156,63 @@
         margin-left: -0.5rem;
     }
 }
+
+@media screen and (min-width: 768px) {
+
+    .header {
+        max-width: 46rem;
+        margin-bottom: 1.9rem;
+    }
+
+    .turn {
+        width: 14rem;
+        height: 5.2rem;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        border-radius: 10px;
+    }
+
+    .turn svg {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .restart {
+        height: 5.2rem;
+        width: 5.2rem;
+    }
+
+    .restart img {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .row .cell {
+        width: 14rem;
+    }
+
+    .row .cell img {
+        height: 6.4rem;
+        width: 6.4rem;
+    }
+
+    .your-score, .ties-score, .cpu-score {
+        width: 14rem;
+        height: 7.2rem;
+        border-radius: 15px;
+    }
+
+    .x-picked, .ties, .o-picked {
+        font-weight: 500;
+        font-size: 1.4rem;
+        line-height: 18px;
+        letter-spacing: 0.875px;
+    }
+
+    .score {
+        font-size: 2.4rem;
+        line-height: 30px;
+        letter-spacing: 1.5px;
+    }
+
+}

@@ -81,18 +81,20 @@ let gameActive = true;
 function player() {
         cells.forEach(cell => {
             cell.addEventListener('click', () => {
-                if (cell.childElementCount !== 0 || gameActive === false) {
+                if (cell.childElementCount !== 0 || gameActive === false || game.classList.contains('pickX') && currentPlayer === 'O' || game.classList.contains('pickO') && currentPlayer === 'X') {
                     return;
                 } else if (cell.childElementCount === 0 && game.classList.contains('pickX')) {
                     const img = document.createElement('img');
                     img.src = "./assets/icon-x.svg";
                     cell.append(img);
                     switchTurn('O');
+                    currentPlayer = 'O';
                 } else if (cell.childElementCount === 0 && game.classList.contains('pickO')) {
                     const img = document.createElement('img');
                     img.src = "./assets/icon-o.svg";
                     cell.append(img);
                     switchTurn('X');
+                    currentPlayer = 'X';
                 }
                 setTimeout(cpu, 500);
                 moveCounter++;
@@ -115,14 +117,15 @@ function cpu() {
             cell.append(img);
             moveCounter++;
             switchTurn('X');
+            currentPlayer = 'X';
             result('cpu')
-            console.log(currentPlayer);
         } else if (cell.childElementCount === 0 && game.classList.contains('pickO')) {
             const img = document.createElement('img');
             img.src = "./assets/icon-x.svg";
             cell.append(img);
             moveCounter++;
             switchTurn('O');
+            currentPlayer = 'O';
             result('cpu')
         } 
     }
@@ -242,10 +245,11 @@ function nextRound() {
             cells.forEach(cell => {
                 cell.innerHTML = '';
                 cell.classList.remove('winX', 'winO');
-                moveCounter = 0;
-                modal.classList.remove('active', 'x', 'o');
-                gameActive = true;
             })
+            moveCounter = 0;
+            modal.classList.remove('active', 'x', 'o');
+            gameActive = true;
+            currentPlayer = (game.classList.contains('pickX')) ? 'X' : 'O';
             drawModal.classList.remove('active');
             if (game.classList.contains('pickO')) {
                 setTimeout(cpuFirstMove, 500);

@@ -83,6 +83,20 @@
     margin-top: -0.4rem;
 }
 
+.row .cell.winX {
+    background: #31C3BD;
+    box-shadow: inset 0px -8px 0px #118C87;
+}
+
+.row .cell.winX img, .cell.winO img {
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(100deg) brightness(5%) contrast(70%);
+}
+
+.row .cell.winO {
+    background: #F2B137;
+    box-shadow: inset 0px -8px 0px #CC8B13;
+}
+
 .scoreboard {
     display: flex;
     gap: 2rem;

@@ -1,148 +1,155 @@
-.modal.active, .modal-restart-game.active, .modal-draw.active {
-    display: block;
-    height: 22.8rem;
-    width: 100%;
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    text-align: center;
-    z-index: 1000;
-    background: #1F3641;
-    box-shadow: 1px 1px 10px 100000px rgba(0, 0, 0, 0.5);
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
+.modal.active,
+.modal-restart-game.active,
+.modal-draw.active {
+  display: block;
+  height: 22.8rem;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  text-align: center;
+  z-index: 1000;
+  background: #1f3641;
+  box-shadow: 1px 1px 10px 100000px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal.active p {
-    line-height: 18px;
-    text-align: center;
-    letter-spacing: 0.875px;
-    color: #A8BFC9;
-    margin: 4rem 0 1.6rem;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.875px;
+  color: #a8bfc9;
+  margin: 4rem 0 1.6rem;
 }
 
 .modal.active span {
-    margin-bottom: 2.4rem;
-    color: #F2B137;
-    font-size: 2.4rem;
-    line-height: 30px;
-    letter-spacing: 1.5px;
+  margin-bottom: 2.4rem;
+  color: #f2b137;
+  font-size: 2.4rem;
+  line-height: 30px;
+  letter-spacing: 1.5px;
 }
 
 .modal-draw.active span {
-    margin: 6.1rem 0 2.4rem;
-    color: #A8BFC9;
-    font-size: 2.4rem;
-    line-height: 30px;
-    letter-spacing: 1.5px;
+  margin: 6.1rem 0 2.4rem;
+  color: #a8bfc9;
+  font-size: 2.4rem;
+  line-height: 30px;
+  letter-spacing: 1.5px;
 }
 
 .winner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal.active.o .modal-x {
-    display: none;
+  display: none;
 }
 .modal.active.x .modal-o {
-    display: none;
-    margin: 0 0.9rem 2.4rem 0;
+  display: none;
+  margin: 0 0.9rem 2.4rem 0;
 }
 
 .modal.active.x span {
-    color: #31C3BD;
+  color: #31c3bd;
 }
 
-.modal-o, .modal-x {
-    height: 3rem;
-    width: 3rem;
-    margin: 0 0.8rem 2.4rem 0;
+.modal-o,
+.modal-x {
+  height: 3rem;
+  width: 3rem;
+  margin: 0 0.8rem 2.4rem 0;
 }
 
 .modal-restart-game.active span {
-    font-size: 2.4rem;
-    line-height: 30px;
-    text-align: center;
-    letter-spacing: 1.5px;
-    color: #A8BFC9;
-    margin: 6.1rem 0 2.4rem;
+  font-size: 2.4rem;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  color: #a8bfc9;
+  margin: 6.1rem 0 2.4rem;
 }
 
 .wrap-buttons button {
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 1px;
-    color: #1A2A33;
-    background: #A8BFC9;
-    box-shadow: inset 0px -4px 0px #6B8997;
-    border-radius: 10px;
-    height: 5.2rem;
-    width: 7.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #1a2a33;
+  background: #a8bfc9;
+  box-shadow: inset 0px -4px 0px #6b8997;
+  border-radius: 10px;
+  height: 5.2rem;
+  width: 7.6rem;
+  cursor: pointer;
 }
 
 .wrap-buttons button:nth-child(2) {
-    background: #F2B137;
-    box-shadow: inset 0px -4px 0px #CC8B13;
-    width: 14.6rem;
-    height: 5.2rem;
-    margin-left: 1.6rem;
+  background: #f2b137;
+  box-shadow: inset 0px -4px 0px #cc8b13;
+  width: 14.6rem;
+  height: 5.2rem;
+  margin-left: 1.6rem;
 }
 
 .wrap-button button {
-    background: #A8BFC9;
-    box-shadow: inset 0px -4px 0px #6B8997;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 1px;
-    color: #1A2A33;
-    width: 15.1rem;
-    height: 5.2rem;
+  background: #a8bfc9;
+  box-shadow: inset 0px -4px 0px #6b8997;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #1a2a33;
+  width: 15.1rem;
+  height: 5.2rem;
+  cursor: pointer;
 }
 
 .wrap-button button:nth-child(2) {
-    background: #F2B137;
-    box-shadow: inset 0px -4px 0px #CC8B13;
-    margin-left: 1.6rem;
+  background: #f2b137;
+  box-shadow: inset 0px -4px 0px #cc8b13;
+  margin-left: 1.6rem;
 }
 
 @media screen and (min-width: 768px) {
+  .modal.active,
+  .modal-restart-game.active,
+  .modal-draw.active {
+    height: 26.6rem;
+  }
 
-    .modal.active, .modal-restart-game.active, .modal-draw.active {
-        height: 26.6rem;
-    }
-    
-    .modal.active p {
-        font-size: 1.6rem;
-        line-height: 20px;
-        letter-spacing: 1px;
-        margin: 4.5rem 0 2.3rem;
-    }
+  .modal.active p {
+    font-size: 1.6rem;
+    line-height: 20px;
+    letter-spacing: 1px;
+    margin: 4.5rem 0 2.3rem;
+  }
 
-    .modal.active span {
-        font-size: 4rem;
-        line-height: 50px;
-        letter-spacing: 2.5px;
-    }
+  .modal.active span {
+    font-size: 4rem;
+    line-height: 50px;
+    letter-spacing: 2.5px;
+  }
 
-    .modal-o, .modal-x {
-        height: 6.4rem;
-        width: 6.4rem;
-        margin: 0 2.4rem 2.4rem 0;
-    }
+  .modal-o,
+  .modal-x {
+    height: 6.4rem;
+    width: 6.4rem;
+    margin: 0 2.4rem 2.4rem 0;
+  }
 
-    .modal-restart-game.active span, .modal-draw.active span {
-        font-size: 4rem;
-        line-height: 50px;
-        letter-spacing: 2.5px;
-        margin: 6.7rem 0 3.1rem;
-    }
-
+  .modal-restart-game.active span,
+  .modal-draw.active span {
+    font-size: 4rem;
+    line-height: 50px;
+    letter-spacing: 2.5px;
+    margin: 6.7rem 0 3.1rem;
+  }
 }

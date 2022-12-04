@@ -1,136 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link rel="stylesheet" href="./styles/menu.css">
-  <link rel="stylesheet" href="./styles/game.css">
-  <link rel="stylesheet" href="./styles/modals.css">
-  <script src="app.js" type="module" defer></script>
-  <title>Frontend Mentor | Tic Tac Toe</title>
-</head>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./styles/menu.css" />
+    <link rel="stylesheet" href="./styles/game.css" />
+    <link rel="stylesheet" href="./styles/modals.css" />
+    <script src="app.js" type="module" defer></script>
+    <title>Frontend Mentor | Tic Tac Toe</title>
+  </head>
 
+  <body>
+    <main>
+      <!-- New game menu start -->
+      <div class="new-game-menu active">
+        <img src="./assets/logo.svg" alt="logo" />
 
-<body>
-  <main>
-    <!-- New game menu start -->
-    <div class="new-game-menu active">
-      <img src="./assets/logo.svg" alt="logo">
-
-      <div class="pick-player">
-        <h1>Pick player 1's mark</h1>
+        <div class="pick-player">
+          <h1>Pick player 1's mark</h1>
           <div class="pick">
             <div class="pick-x">
-              <svg class="select-x" width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="currentColor" fill-rule="evenodd"/></svg>
+              <svg
+                class="select-x"
+                width="32"
+                height="32"
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </div>
             <div class="pick-o active">
-              <svg class="select-o active" width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" fill="currentColor"/></svg>          
+              <svg
+                class="select-o active"
+                width="32"
+                height="32"
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
           </div>
-        <h2>Remember: X goes first</h2>
-      </div>
-
-      <div class="btn-new-game">
-        <button class="cpu" type="button">New Game (vs CPU)</button>
-        <button class="player" type="button">New Game (vs player)</button>
-      </div>
-    </div>
-    <!-- New game menu end -->
-
-    <!-- Game board start -->
-    <div class="game">
-      <div class="header">
-        <div class="logo">
-          <img src="./assets/logo.svg" alt="logo">
+          <h2>Remember: X goes first</h2>
         </div>
 
-        <div class="turn">
-          <svg class="x-turn active" width="16" height="16" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="currentColor" fill-rule="evenodd"/></svg>
-          <svg class="o-turn" width="16" height="16" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" fill="currentColor"/></svg>
-          turn
-        </div>
-
-        <div class="restart">
-          <img src="./assets/icon-restart.svg" alt="icon restart">
+        <div class="btn-new-game">
+          <button class="cpu" type="button">New Game (vs CPU)</button>
+          <button class="player" type="button">New Game (vs player)</button>
         </div>
       </div>
+      <!-- New game menu end -->
 
-      <div class="board">
-        <div class="row">
-          <div data-cell="0" ="" id="cell-1" class="cell"></div>
-          <div  data-cell="1" id="cell-2" class="cell"></div>
-          <div data-cell="2" id="cell-3" class="cell"></div>
+      <!-- Game board start -->
+      <div class="game">
+        <div class="header">
+          <div class="logo">
+            <img src="./assets/logo.svg" alt="logo" />
+          </div>
+
+          <div class="turn">
+            <svg
+              class="x-turn active"
+              width="16"
+              height="16"
+              viewBox="0 0 64 64"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <svg
+              class="o-turn"
+              width="16"
+              height="16"
+              viewBox="0 0 64 64"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z"
+                fill="currentColor"
+              />
+            </svg>
+            turn
+          </div>
+
+          <div class="restart">
+            <img src="./assets/icon-restart.svg" alt="icon restart" />
+          </div>
         </div>
 
-        <div class="row">
-          <div data-cell="3" id="cell-4" class="cell"></div>
-          <div  data-cell="4" id="cell-5" class="cell"></div>
-          <div data-cell="5" id="cell-6" class="cell"></div>
+        <div class="board">
+          <div class="row">
+            <div data-cell="0" ="" id="cell-1" class="cell"></div>
+            <div data-cell="1" id="cell-2" class="cell"></div>
+            <div data-cell="2" id="cell-3" class="cell"></div>
+          </div>
+
+          <div class="row">
+            <div data-cell="3" id="cell-4" class="cell"></div>
+            <div data-cell="4" id="cell-5" class="cell"></div>
+            <div data-cell="5" id="cell-6" class="cell"></div>
+          </div>
+
+          <div class="row">
+            <div data-cell="6" id="cell-7" class="cell"></div>
+            <div data-cell="7" id="cell-8" class="cell"></div>
+            <div data-cell="8" id="cell-9" class="cell"></div>
+          </div>
         </div>
 
-        <div class="row">
-          <div data-cell="6" id="cell-7" class="cell"></div>
-          <div data-cell="7" id="cell-8" class="cell"></div>
-          <div data-cell="8" id="cell-9" class="cell"></div>
+        <div class="scoreboard">
+          <div class="your-score">
+            <span class="x-picked">X (You)</span>
+            <div id="your-score" class="score">0</div>
+          </div>
+
+          <div class="ties-score">
+            <span class="ties">Ties</span>
+            <div id="ties-score" class="score">0</div>
+          </div>
+
+          <div class="cpu-score">
+            <span class="o-picked">O (CPU)</span>
+            <div id="cpu-score" class="score">0</div>
+          </div>
+        </div>
+
+        <div class="modal">
+          <p class="win-or-lose-txt">Oh no, you lost...</p>
+          <div class="winner">
+            <img class="modal-x" src="./assets/icon-x.svg" alt="icon x" />
+            <img class="modal-o" src="./assets/icon-o.svg" alt="icon o" />
+            <span>takes the round</span>
+          </div>
+          <div class="wrap-buttons">
+            <button class="quit" type="button">Quit</button>
+            <button class="next-round" type="button">Next round</button>
+          </div>
+        </div>
+
+        <div class="modal-draw">
+          <span>Round tied</span>
+          <div class="wrap-buttons">
+            <button class="quit" type="button">Quit</button>
+            <button class="next-round" type="button">Next round</button>
+          </div>
+        </div>
+
+        <div class="modal-restart-game">
+          <span>Restart game?</span>
+          <div class="wrap-button">
+            <button id="cancel" type="button">No, cancel</button>
+            <button id="restart" type="button">Yes, restart</button>
+          </div>
         </div>
       </div>
-
-
-
-      <div class="scoreboard">
-        <div class="your-score">
-          <span class="x-picked">X (You)</span>
-          <div id="your-score" class="score">0</div>
-        </div>
-
-        <div class="ties-score">
-          <span class="ties">Ties</span>
-          <div id="ties-score" class="score">0</div>
-        </div>
-
-        <div class="cpu-score">
-          <span class="o-picked">O (CPU)</span>
-          <div id="cpu-score" class="score">0</div>
-        </div>
-      </div>
-
-
-      <div class="modal">
-        <p class="win-or-lose-txt">Oh no, you lost...</p>
-        <div class="winner">
-          <img class="modal-x" src="./assets/icon-x.svg" alt="icon x">
-          <img class="modal-o" src="./assets/icon-o.svg" alt="icon o">
-          <span>takes the round</span>
-        </div>
-        <div class="wrap-buttons">
-          <button class="quit" type="button">Quit</button>
-          <button class="next-round" type="button">Next round</button>
-        </div>
-      </div>
-      
-      
-      <div class="modal-draw">
-        <span>Round tied</span>
-        <div class="wrap-buttons">
-          <button class="quit" type="button">Quit</button>
-          <button class="next-round" type="button">Next round</button>
-        </div>
-      </div>
-
-      <div class="modal-restart-game">
-        <span>Restart game?</span>
-        <div class="wrap-button">
-          <button id="cancel" type="button">No, cancel</button>
-          <button id="restart" type="button">Yes, restart</button>
-        </div>
-      </div>
-      
-  
-  </div>
-    <!-- Game board end -->
-
-  </main>
-</body>
+      <!-- Game board end -->
+    </main>
+  </body>
 </html>

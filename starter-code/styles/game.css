@@ -73,7 +73,7 @@
   aspect-ratio: 1/1;
   width: 9.6rem;
   background: #1f3641;
-  box-shadow: inset 0px -8px 0px #10212a;
+  box-shadow: inset 0 -8px 0 #10212a;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -212,8 +212,26 @@
     width: 2rem;
   }
 
+  .board {
+    margin-bottom: 3rem;
+  }
+
   .row .cell {
     width: 14rem;
+    box-shadow: 0 10px 0 #0f191e;
+    transition: box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      background-size 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .row .cell:hover {
+    transform: translate3d(0, 4px, 0);
+    box-shadow: 0 6px 0 #0f191e;
+  }
+
+  .row .cell.played {
+    transform: translate3d(0, 8px, 0);
+    box-shadow: 0 2px 0 #0f191e;
   }
 
   .row .cell img {

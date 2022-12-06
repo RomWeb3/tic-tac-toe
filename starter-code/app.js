@@ -332,6 +332,28 @@ function updateScoreboard(winner) {
   }
 }
 
+function toggleWhoBegins() {
+  if (gameCounter % 2 === 0 && game.classList.contains("player")) {
+    game.classList.remove("pickO");
+    game.classList.add("pickX");
+    currentPlayer = "X";
+    switchTurn("X");
+    cells.forEach((cell) => {
+      cell.classList.remove("O-picked");
+      cell.classList.add("X-picked");
+    });
+  } else if (gameCounter % 2 !== 0 && game.classList.contains("player")) {
+    game.classList.remove("pickX");
+    game.classList.add("pickO");
+    currentPlayer = "O";
+    switchTurn("O");
+    cells.forEach((cell) => {
+      cell.classList.remove("X-picked");
+      cell.classList.add("O-picked");
+    });
+  }
+}
+
 function restart() {
   const restartBtn = document.querySelector(".restart");
   const restartModal = document.querySelector(".modal-restart-game");
@@ -354,26 +376,7 @@ function restart() {
     });
     restartModal.classList.remove("active");
     cpuFirstMove();
-
-    if (gameCounter % 2 === 0) {
-      game.classList.remove("pickO");
-      game.classList.add("pickX");
-      currentPlayer = "X";
-      switchTurn("X");
-      cells.forEach((cell) => {
-        cell.classList.remove("O-picked");
-        cell.classList.add("X-picked");
-      });
-    } else if (gameCounter % 2 !== 0) {
-      game.classList.remove("pickX");
-      game.classList.add("pickO");
-      currentPlayer = "O";
-      switchTurn("O");
-      cells.forEach((cell) => {
-        cell.classList.remove("X-picked");
-        cell.classList.add("O-picked");
-      });
-    }
+    toggleWhoBegins();
   });
 }
 
@@ -393,27 +396,7 @@ function nextRound() {
       currentPlayer = game.classList.contains("pickX") ? "X" : "O";
       drawModal.classList.remove("active");
       cpuFirstMove();
-
-      if (gameCounter % 2 === 0 && game.classList.contains("player")) {
-        game.classList.remove("pickO");
-        game.classList.add("pickX");
-        currentPlayer = "X";
-        switchTurn("X");
-        cells.forEach((cell) => {
-          cell.classList.remove("O-picked");
-          cell.classList.add("X-picked");
-        });
-      } else if (gameCounter % 2 !== 0 && game.classList.contains("player")) {
-        game.classList.remove("pickX");
-        game.classList.add("pickO");
-        currentPlayer = "O";
-        switchTurn("O");
-        console.log(currentPlayer);
-        cells.forEach((cell) => {
-          cell.classList.remove("X-picked");
-          cell.classList.add("O-picked");
-        });
-      }
+      toggleWhoBegins();
     });
   });
 }

@@ -56,7 +56,7 @@ playVsCpu.addEventListener("click", () => {
     oOrX = "x";
     scoreX.innerText = "X (CPU)";
     scoreO.innerText = "O (You)";
-    setTimeout(cpuFirstMove, 500);
+    cpuFirstMove();
   }
 });
 
@@ -76,12 +76,12 @@ playVsPlayer.addEventListener("click", () => {
     scoreX.innerText = "X (P1)";
     scoreO.innerText = "O (P2)";
   } else {
-    game.classList.add("pickO");
+    game.classList.add("pickX");
     newGameMenu.classList.add("pickO");
     cells.forEach((cell) => {
-      cell.classList.add("O-picked");
+      cell.classList.add("X-picked");
     });
-    currentPlayer = "O";
+    currentPlayer = "X";
     xOrO = "o";
     oOrX = "x";
     scoreX.innerText = "X (P2)";
@@ -188,11 +188,14 @@ function cpuFirstMove() {
   const cell = document.querySelector(`#cell-${random}`);
 
   if (moveCounter < 1 && game.classList.contains("cpu")) {
-    const img = document.createElement("img");
-    img.src = "./assets/icon-x.svg";
-    cell.append(img);
-    moveCounter++;
-    switchTurn("O");
+    setTimeout(() => {
+      const img = document.createElement("img");
+      img.src = "./assets/icon-x.svg";
+      cell.append(img);
+      moveCounter++;
+      switchTurn("O");
+      cell.classList.add("played");
+    }, 200);
   }
 }
 
@@ -328,7 +331,7 @@ function restart() {
     });
     restartModal.classList.remove("active");
     if (game.classList.contains("pickO")) {
-      setTimeout(cpuFirstMove, 500);
+      cpuFirstMove();
     }
     if (newGameMenu.classList.contains("pickX")) {
       game.classList.remove("pickO");
@@ -365,7 +368,7 @@ function nextRound() {
       currentPlayer = game.classList.contains("pickX") ? "X" : "O";
       drawModal.classList.remove("active");
       if (game.classList.contains("pickO")) {
-        setTimeout(cpuFirstMove, 500);
+        cpuFirstMove();
       }
       if (newGameMenu.classList.contains("pickX")) {
         game.classList.remove("pickO");

@@ -28,6 +28,7 @@ const menu = document.querySelector(".new-game-menu");
 const game = document.querySelector(".game");
 const scoreX = document.querySelector(".x-picked");
 const scoreO = document.querySelector(".o-picked");
+const newGameMenu = document.querySelector(".new-game-menu");
 let currentPlayer;
 let xOrO; // Player pick X or O
 let oOrX; // CPU pick X or O
@@ -63,6 +64,29 @@ playVsPlayer.addEventListener("click", () => {
   menu.classList.remove("active");
   game.classList.add("active");
   game.classList.add("player");
+  if (pickX.classList.contains("active")) {
+    game.classList.add("pickX");
+    newGameMenu.classList.add("pickX");
+    cells.forEach((cell) => {
+      cell.classList.add("X-picked");
+    });
+    currentPlayer = "X";
+    xOrO = "x";
+    oOrX = "o";
+    scoreX.innerText = "X (P1)";
+    scoreO.innerText = "O (P2)";
+  } else {
+    game.classList.add("pickO");
+    newGameMenu.classList.add("pickO");
+    cells.forEach((cell) => {
+      cell.classList.add("O-picked");
+    });
+    currentPlayer = "O";
+    xOrO = "o";
+    oOrX = "x";
+    scoreX.innerText = "X (P2)";
+    scoreO.innerText = "O (P1)";
+  }
 });
 
 // Game Solo - Easy mode
@@ -89,6 +113,7 @@ function player() {
       if (
         cell.childElementCount !== 0 ||
         gameActive === false ||
+        game.classList.contains("cpu") === false ||
         (game.classList.contains("pickX") && currentPlayer === "O") ||
         (game.classList.contains("pickO") && currentPlayer === "X")
       ) {
@@ -162,7 +187,7 @@ function cpuFirstMove() {
   const random = Math.floor(Math.random() * 9) + 1;
   const cell = document.querySelector(`#cell-${random}`);
 
-  if (moveCounter < 1) {
+  if (moveCounter < 1 && game.classList.contains("cpu")) {
     const img = document.createElement("img");
     img.src = "./assets/icon-x.svg";
     cell.append(img);
@@ -213,14 +238,50 @@ function result(winner) {
     }
   }
 
-  if (roundWon && winner === "player") {
+  if (roundWon && winner === "player" && game.classList.contains("cpu")) {
     setTimeout(() => {
       winOrLoseTxt.innerText = "you won!";
       modal.classList.add("active", xOrO);
     }, 700);
-  } else if (roundWon && winner === "cpu") {
+  } else if (roundWon && winner === "cpu" && game.classList.contains("cpu")) {
     setTimeout(() => {
       winOrLoseTxt.innerText = "oh no, you lost...";
+      modal.classList.add("active", oOrX);
+    }, 700);
+  } else if (
+    roundWon &&
+    winner === "player" &&
+    newGameMenu.classList.contains("pickX")
+  ) {
+    setTimeout(() => {
+      winOrLoseTxt.innerText = "player 1 wins!";
+      modal.classList.add("active", xOrO);
+    }, 700);
+  } else if (
+    roundWon &&
+    winner === "cpu" &&
+    newGameMenu.classList.contains("pickX")
+  ) {
+    setTimeout(() => {
+      winOrLoseTxt.innerText = "player 2 wins!";
+      modal.classList.add("active", oOrX);
+    }, 700);
+  } else if (
+    roundWon &&
+    winner === "cpu" &&
+    newGameMenu.classList.contains("pickO")
+  ) {
+    setTimeout(() => {
+      winOrLoseTxt.innerText = "player 1 wins!";
+      modal.classList.add("active", xOrO);
+    }, 700);
+  } else if (
+    roundWon &&
+    winner === "player" &&
+    newGameMenu.classList.contains("pickO")
+  ) {
+    setTimeout(() => {
+      winOrLoseTxt.innerText = "player 2 wins!";
       modal.classList.add("active", oOrX);
     }, 700);
   } else if (moveCounter === 9) {
@@ -269,6 +330,23 @@ function restart() {
     if (game.classList.contains("pickO")) {
       setTimeout(cpuFirstMove, 500);
     }
+    if (newGameMenu.classList.contains("pickX")) {
+      game.classList.remove("pickO");
+      game.classList.add("pickX");
+      currentPlayer = "X";
+      cells.forEach((cell) => {
+        cell.classList.remove("O-picked");
+        cell.classList.add("X-picked");
+      });
+    } else if (newGameMenu.classList.contains("pickO")) {
+      game.classList.remove("pickX");
+      game.classList.add("pickO");
+      currentPlayer = "O";
+      cells.forEach((cell) => {
+        cell.classList.remove("X-picked");
+        cell.classList.add("O-picked");
+      });
+    }
   });
 }
 
@@ -288,6 +366,23 @@ function nextRound() {
       drawModal.classList.remove("active");
       if (game.classList.contains("pickO")) {
         setTimeout(cpuFirstMove, 500);
+      }
+      if (newGameMenu.classList.contains("pickX")) {
+        game.classList.remove("pickO");
+        game.classList.add("pickX");
+        currentPlayer = "X";
+        cells.forEach((cell) => {
+          cell.classList.remove("O-picked");
+          cell.classList.add("X-picked");
+        });
+      } else if (newGameMenu.classList.contains("pickO")) {
+        game.classList.remove("pickX");
+        game.classList.add("pickO");
+        currentPlayer = "O";
+        cells.forEach((cell) => {
+          cell.classList.remove("X-picked");
+          cell.classList.add("O-picked");
+        });
       }
     });
   });
@@ -336,3 +431,59 @@ function newGame() {
 }
 
 newGame();
+
+// Player vs Player
+
+function playerVsPlayer() {
+  cells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      if (
+        cell.childElementCount !== 0 ||
+        gameActive === false ||
+        game.classList.contains("player") === false ||
+        (game.classList.contains("pickX") && currentPlayer === "O") ||
+        (game.classList.contains("pickO") && currentPlayer === "X")
+      ) {
+        return;
+      } else if (
+        cell.childElementCount === 0 &&
+        game.classList.contains("pickX")
+      ) {
+        const img = document.createElement("img");
+        img.src = "./assets/icon-x.svg";
+        cell.append(img);
+        switchTurn("O");
+        currentPlayer = "O";
+        cell.classList.add("played");
+        cells.forEach((cell) => {
+          cell.classList.remove("X-picked");
+          cell.classList.add("O-picked");
+        });
+        game.classList.remove("pickX");
+        game.classList.add("pickO");
+        moveCounter++;
+        result("player");
+      } else if (
+        cell.childElementCount === 0 &&
+        game.classList.contains("pickO")
+      ) {
+        const img = document.createElement("img");
+        img.src = "./assets/icon-o.svg";
+        cell.append(img);
+        switchTurn("X");
+        currentPlayer = "X";
+        cell.classList.add("played");
+        cells.forEach((cell) => {
+          cell.classList.remove("O-picked");
+          cell.classList.add("X-picked");
+        });
+        game.classList.remove("pickO");
+        game.classList.add("pickX");
+        moveCounter++;
+        result("cpu");
+      }
+    });
+  });
+}
+
+playerVsPlayer();

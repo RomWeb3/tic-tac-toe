@@ -34,6 +34,7 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   background: #1a2a33;
+  overflow: hidden;
 }
 
 main {
@@ -199,4 +200,16 @@ main {
 .btn-new-game button:nth-child(2):active {
   transform: translate3d(0, 6px, 0);
   box-shadow: 0 0 0 #118c87;
+}
+
+@media screen and (max-height: 560px) {
+  body {
+    overflow: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-height: 675px) {
+  body {
+    overflow: auto;
+  }
 }

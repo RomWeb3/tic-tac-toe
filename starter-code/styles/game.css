@@ -86,15 +86,15 @@
 }
 
 .row .cell.X-picked:not(.played):hover {
-  background: url(../assets/icon-x-outline.svg) #1f3641;
+  background: url(../assets/icon-x-outline-mobile.svg) #1f3641;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 48%;
 }
 
 .row .cell.O-picked:not(.played):hover {
-  background: url(../assets/icon-o-outline.svg) #1f3641;
+  background: url(../assets/icon-o-outline-mobile.svg) #1f3641;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 48%;
 }
 
 .row .cell img {
@@ -232,6 +232,18 @@
   .row .cell.played {
     transform: translate3d(0, 8px, 0);
     box-shadow: 0 2px 0 #0f191e;
+  }
+
+  .row .cell.X-picked:not(.played):hover {
+    background: url(../assets/icon-x-outline.svg) #1f3641;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .row .cell.O-picked:not(.played):hover {
+    background: url(../assets/icon-o-outline.svg) #1f3641;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .row .cell img {

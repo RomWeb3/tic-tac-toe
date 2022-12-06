@@ -1,10 +1,8 @@
 // Pick player
-
 const pickX = document.querySelector(".pick-x");
 const pickO = document.querySelector(".pick-o");
 const selectX = document.querySelector(".select-x");
 const selectO = document.querySelector(".select-o");
-const newGameCpuBtn = document.querySelector(".cpu");
 
 pickX.addEventListener("click", () => {
   pickX.classList.add("active");
@@ -21,7 +19,6 @@ pickO.addEventListener("click", () => {
 });
 
 // Start game
-
 const playVsCpu = document.querySelector(".cpu");
 const playVsPlayer = document.querySelector(".player");
 const menu = document.querySelector(".new-game-menu");

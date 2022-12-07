@@ -136,7 +136,7 @@ function player() {
   });
 }
 
-// CPU play on random cell and retry if cell is already taken
+// CPU play on random cell and retry if cell is not empty
 function cpu() {
   const random = Math.floor(Math.random() * 9) + 1;
   const cell = document.querySelector(`#cell-${random}`);

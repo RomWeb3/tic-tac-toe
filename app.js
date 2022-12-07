@@ -118,7 +118,6 @@ function player() {
         cell.append(img);
         switchTurn("O");
         currentPlayer = "O";
-        cell.classList.add("played");
       } else if (
         cell.childElementCount === 0 &&
         game.classList.contains("pickO")
@@ -128,8 +127,8 @@ function player() {
         cell.append(img);
         switchTurn("X");
         currentPlayer = "X";
-        cell.classList.add("played");
       }
+      cell.classList.add("played");
       setTimeout(cpu, 500);
       moveCounter++;
       result("player");
@@ -152,11 +151,8 @@ function cpu() {
       const img = document.createElement("img");
       img.src = "./assets/icon-o.svg";
       cell.append(img);
-      moveCounter++;
       switchTurn("X");
       currentPlayer = "X";
-      cell.classList.add("played");
-      result("cpu");
     } else if (
       cell.childElementCount === 0 &&
       game.classList.contains("pickO")
@@ -164,12 +160,12 @@ function cpu() {
       const img = document.createElement("img");
       img.src = "./assets/icon-x.svg";
       cell.append(img);
-      moveCounter++;
       switchTurn("O");
       currentPlayer = "O";
-      cell.classList.add("played");
-      result("cpu");
     }
+    moveCounter++;
+    cell.classList.add("played");
+    result("cpu");
   }
 }
 
@@ -287,12 +283,12 @@ function result(winner) {
         winOrLoseTxt.innerText = "player 2 wins!";
         modal.classList.add("active", oOrX);
       }, 700);
-    } else if (moveCounter === 9) {
-      setTimeout(() => {
-        updateScoreboard("draw");
-        drawModal.classList.add("active");
-      }, 700);
     }
+  } else if (!roundWon && moveCounter === 9) {
+    setTimeout(() => {
+      updateScoreboard("draw");
+      drawModal.classList.add("active");
+    }, 700);
   }
 }
 

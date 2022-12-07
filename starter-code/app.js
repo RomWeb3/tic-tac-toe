@@ -1,9 +1,20 @@
-// Pick player
 const pickX = document.querySelector(".pick-x");
 const pickO = document.querySelector(".pick-o");
 const selectX = document.querySelector(".select-x");
 const selectO = document.querySelector(".select-o");
 
+const playVsCpu = document.querySelector(".cpu");
+const playVsPlayer = document.querySelector(".player");
+const menu = document.querySelector(".new-game-menu");
+const game = document.querySelector(".game");
+const scoreX = document.querySelector(".x-picked");
+const scoreO = document.querySelector(".o-picked");
+const newGameMenu = document.querySelector(".new-game-menu");
+let currentPlayer;
+let xOrO; // Player pick X or O
+let oOrX; // CPU pick X or O
+
+// Pick player
 pickX.addEventListener("click", () => {
   pickX.classList.add("active");
   selectX.classList.add("active");
@@ -19,17 +30,6 @@ pickO.addEventListener("click", () => {
 });
 
 // Start game
-const playVsCpu = document.querySelector(".cpu");
-const playVsPlayer = document.querySelector(".player");
-const menu = document.querySelector(".new-game-menu");
-const game = document.querySelector(".game");
-const scoreX = document.querySelector(".x-picked");
-const scoreO = document.querySelector(".o-picked");
-const newGameMenu = document.querySelector(".new-game-menu");
-let currentPlayer;
-let xOrO; // Player pick X or O
-let oOrX; // CPU pick X or O
-
 playVsCpu.addEventListener("click", () => {
   menu.classList.remove("active");
   game.classList.add("active", "cpu");
@@ -87,31 +87,23 @@ playVsPlayer.addEventListener("click", () => {
   }
 });
 
-// Game Solo - Easy mode
-const cell1 = document.querySelector("#cell-1");
-const cell2 = document.querySelector("#cell-2");
-const cell3 = document.querySelector("#cell-3");
-const cell4 = document.querySelector("#cell-4");
-const cell5 = document.querySelector("#cell-5");
-const cell6 = document.querySelector("#cell-6");
-const cell7 = document.querySelector("#cell-7");
-const cell8 = document.querySelector("#cell-8");
-const cell9 = document.querySelector("#cell-9");
+// Game vs CPU - Easy mode
 const cells = document.querySelectorAll(".cell");
-let moveCounter = 0;
-let gameCounter = 0;
 const modal = document.querySelector(".modal");
-const winOrLoseTxt = document.querySelector(".win-or-lose-txt");
 const drawModal = document.querySelector(".modal-draw");
-let gameActive = true;
+const winOrLoseTxt = document.querySelector(".win-or-lose-txt");
 
-// Player click and play - cpu play after player
+let gameActive = true;
+let gameCounter = 0;
+let moveCounter = 0;
+
+// Player click to play & trigger cpu play
 function player() {
   cells.forEach((cell) => {
     cell.addEventListener("click", () => {
       if (
         cell.childElementCount !== 0 ||
-        gameActive === false ||
+        !gameActive ||
         game.classList.contains("cpu") === false ||
         (game.classList.contains("pickX") && currentPlayer === "O") ||
         (game.classList.contains("pickO") && currentPlayer === "X")
@@ -150,7 +142,7 @@ function cpu() {
   const random = Math.floor(Math.random() * 9) + 1;
   const cell = document.querySelector(`#cell-${random}`);
 
-  if (moveCounter < 9 && gameActive === true) {
+  if (moveCounter < 9 && gameActive) {
     if (cell.childElementCount !== 0) {
       return cpu();
     } else if (
@@ -264,57 +256,43 @@ function result(winner) {
     }
   }
 
-  if (roundWon && winner === "player" && game.classList.contains("cpu")) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "you won!";
-      modal.classList.add("active", xOrO);
-    }, 700);
-  } else if (roundWon && winner === "cpu" && game.classList.contains("cpu")) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "oh no, you lost...";
-      modal.classList.add("active", oOrX);
-    }, 700);
-  } else if (
-    roundWon &&
-    winner === "player" &&
-    newGameMenu.classList.contains("pickX")
-  ) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "player 1 wins!";
-      modal.classList.add("active", xOrO);
-    }, 700);
-  } else if (
-    roundWon &&
-    winner === "cpu" &&
-    newGameMenu.classList.contains("pickX")
-  ) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "player 2 wins!";
-      modal.classList.add("active", oOrX);
-    }, 700);
-  } else if (
-    roundWon &&
-    winner === "cpu" &&
-    newGameMenu.classList.contains("pickO")
-  ) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "player 1 wins!";
-      modal.classList.add("active", xOrO);
-    }, 700);
-  } else if (
-    roundWon &&
-    winner === "player" &&
-    newGameMenu.classList.contains("pickO")
-  ) {
-    setTimeout(() => {
-      winOrLoseTxt.innerText = "player 2 wins!";
-      modal.classList.add("active", oOrX);
-    }, 700);
-  } else if (moveCounter === 9) {
-    setTimeout(() => {
-      updateScoreboard("draw");
-      drawModal.classList.add("active");
-    }, 700);
+  if (roundWon) {
+    if (winner === "player" && game.classList.contains("cpu")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "you won!";
+        modal.classList.add("active", xOrO);
+      }, 700);
+    } else if (winner === "cpu" && game.classList.contains("cpu")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "oh no, you lost...";
+        modal.classList.add("active", oOrX);
+      }, 700);
+    } else if (winner === "player" && newGameMenu.classList.contains("pickX")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "player 1 wins!";
+        modal.classList.add("active", xOrO);
+      }, 700);
+    } else if (winner === "cpu" && newGameMenu.classList.contains("pickX")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "player 2 wins!";
+        modal.classList.add("active", oOrX);
+      }, 700);
+    } else if (winner === "cpu" && newGameMenu.classList.contains("pickO")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "player 1 wins!";
+        modal.classList.add("active", xOrO);
+      }, 700);
+    } else if (winner === "player" && newGameMenu.classList.contains("pickO")) {
+      setTimeout(() => {
+        winOrLoseTxt.innerText = "player 2 wins!";
+        modal.classList.add("active", oOrX);
+      }, 700);
+    } else if (moveCounter === 9) {
+      setTimeout(() => {
+        updateScoreboard("draw");
+        drawModal.classList.add("active");
+      }, 700);
+    }
   }
 }
 
@@ -453,7 +431,7 @@ function playerVsPlayer() {
     cell.addEventListener("click", () => {
       if (
         cell.childElementCount !== 0 ||
-        gameActive === false ||
+        !gameActive ||
         game.classList.contains("player") === false ||
         (game.classList.contains("pickX") && currentPlayer === "O") ||
         (game.classList.contains("pickO") && currentPlayer === "X")

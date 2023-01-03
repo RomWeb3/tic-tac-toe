@@ -43,7 +43,6 @@ playVsCpu.addEventListener("click", () => {
     oOrX = "o";
     scoreX.innerText = "X (You)";
     scoreO.innerText = "O (CPU)";
-    cpuFirstMove();
   } else {
     game.classList.add("pickO");
     cells.forEach((cell) => {
@@ -54,8 +53,8 @@ playVsCpu.addEventListener("click", () => {
     oOrX = "x";
     scoreX.innerText = "X (CPU)";
     scoreO.innerText = "O (You)";
-    cpuFirstMove();
   }
+  newGamePvC();
 });
 
 playVsPlayer.addEventListener("click", () => {
@@ -85,6 +84,7 @@ playVsPlayer.addEventListener("click", () => {
     scoreX.innerText = "X (P2)";
     scoreO.innerText = "O (P1)";
   }
+  newGamePvP();
 });
 
 // Game vs CPU - Easy mode
@@ -382,7 +382,7 @@ function quit() {
     btn.addEventListener("click", () => {
       drawModal.classList.remove("active");
       menu.classList.add("active");
-      game.classList.remove("active", "cpu", "pickX", "pickO");
+      game.classList.remove("active", "cpu", "pickX", "pickO", "player", "cpu");
       modal.classList.remove("active", "x", "o");
       xScore.innerText = 0;
       oScore.innerText = 0;
@@ -410,15 +410,19 @@ function switchTurn(currentPlayer) {
   }
 }
 
-function newGame() {
+function newGamePvC() {
+  cpuFirstMove();
   player();
-  result();
-  restart();
-  nextRound();
-  quit();
 }
 
-newGame();
+function newGamePvP() {
+  playerVsPlayer();
+}
+
+result();
+restart();
+nextRound();
+quit();
 
 // Player vs Player
 
@@ -473,5 +477,3 @@ function playerVsPlayer() {
     });
   });
 }
-
-playerVsPlayer();
